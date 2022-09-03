@@ -1,12 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './containers/App';
+import Init from './containers/Init';
+import Home from './containers/Home';
+import Create from './containers/Create';
+import Detail from './containers/Detail';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} >
+          <Route path="home" element={<Home />} />
+          <Route path="create" element={<Create />} />
+          <Route path="recipe/:id/detail" element={<Detail />} />
+        </Route>
+        <Route path="/init" element={<Init />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
