@@ -1,0 +1,52 @@
+.image{
+  position: absolute;
+}
+
+.logo{
+  position: absolute;
+  z-index: 1;
+}
+
+.div{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 4%;
+  align-items: center;
+}
+
+.divButton{
+  position: relative;
+  width:900px;
+  height:600px;
+  display: flex;
+  justify-content: center;
+  background-color: #3131315f;
+  border-radius: 20px;
+}
+
+.button{
+  position: absolute;
+  bottom: 10%;
+  width:100px;
+  height:60px;
+  z-index: 2;
+  border-radius: 10px;
+  border: none;
+  font-size: large;
+  background-color: rgb(93, 93, 189);
+  transition: 0.3s;
+}
+
+.button:hover {
+  background-color: rgb(201, 207, 18);
+}
+
+.linkStyle{
+  text-decoration: none;
+  color: aliceBlue
+};
+
+.txt{
+  color: red;
+}
