@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './containers/App';
 import Init from './containers/Init';
-import Home from './containers/Home';
+import Main from './containers/Main';
 import Create from './containers/Create';
 import Detail from './containers/Detail';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -14,12 +13,11 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} >
-          <Route path="home" element={<Home />} />
+        <Route path="/" element={<Init />} />
+        <Route path="main" element={<Main />} >
           <Route path="create" element={<Create />} />
           <Route path="recipe/:id/detail" element={<Detail />} />
         </Route>
-        <Route path="/init" element={<Init />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
