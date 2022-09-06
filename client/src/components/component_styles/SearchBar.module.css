@@ -5,10 +5,11 @@
     left: 0;
     background-color: #e3e0c4;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     padding: 0 20px;
     box-sizing: border-box;
+    position: fixed;
 }
 
 .navbar nav {
@@ -28,9 +29,8 @@
 .listItem {
     margin: 0;
     display: flex;
-    height: 70%;
-    width: 110%;
-    margin-top: 5px;
+    height: 40px;
+    width: 200px;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
@@ -44,15 +44,7 @@
 }
 
 .listItem:hover {
-    margin: 0;
-    display: flex;
     margin-top: 5px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    color: aliceblue;
-    font-size: large;
-    text-decoration: none;
     background-color: burlywood;
 }
 

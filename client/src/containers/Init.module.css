@@ -11,7 +11,7 @@
   position: relative;
   display: flex;
   justify-content: center;
-  margin-top: 4%;
+  margin-top: 2%;
   align-items: center;
 }
 
@@ -67,8 +67,22 @@
 }
 
 .spanStyle{
-  color: coral;
-  position: absolute;
-  right: 5%;
+  color: rgb(255, 179, 152);
+  position: relative;
   font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.GH_logo{
+  display: inline;
+  margin-left: 5px;
+  opacity: 50%;
+}
+
+.div_GH{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 5px;
 }
