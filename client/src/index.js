@@ -7,19 +7,23 @@ import Create from './containers/Create';
 import Detail from './containers/Detail';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import store from './redux/store/store.js'
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Init />} />
-        <Route path="main" element={<Main />} >
-          <Route path="create" element={<Create />} />
-          <Route path="recipe/:id/detail" element={<Detail />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Init />} />
+          <Route path="main" element={<Main />} >
+            <Route path="create" element={<Create />} />
+            <Route path="recipe/:id/detail" element={<Detail />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

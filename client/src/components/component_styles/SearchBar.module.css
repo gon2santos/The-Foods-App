@@ -28,7 +28,7 @@
 .listItem {
     margin: 0;
     display: flex;
-    height: 80%;
+    height: 70%;
     width: 110%;
     margin-top: 5px;
     align-items: center;
@@ -37,16 +37,15 @@
     color: aliceblue;
     font-size: large;
     text-decoration: none;
-    background-color: rgb(62, 159, 58);
+    background-color: rgb(141, 174, 113);
     transition: 0.3s;
     font-weight: bold;
+    border: 2px solid aliceblue;
 }
 
 .listItem:hover {
     margin: 0;
     display: flex;
-    height: 80%;
-    width: 110%;
     margin-top: 5px;
     align-items: center;
     justify-content: center;
@@ -61,19 +60,23 @@
     background-color: rgb(141, 174, 113);
     padding: 2px;
     border-radius: 100px;
-    height: 30px;
-    width: 30px;
+    height: 35px;
+    width: 35px;
 }
 
 .searchForm{
     display: flex;
     align-items: center;
+    padding: 3px;
+    border: 2px solid aliceblue;
+    border-radius: 100px;
+    background-color: burlywood;
 }
 
 .searchInput{
     background-color: aliceblue;
-    height: 30px;
-    border-radius: 80px;
+    height: 35px;
+    border-radius: 100px;
     border: none;
     text-align: center;
     margin-right: 5px;
