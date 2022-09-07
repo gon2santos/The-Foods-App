@@ -29,15 +29,14 @@ export default function RecipeList() {
             <div className={s.div_ul}>
                 <ul className={s.ul}>
                     {recipes.results.slice(rcpIdx, (rcpIdx + 9)).map((r) =>
-                        <li>{r.title}</li>
+                        <li className={s.li}><img src={r.image} className={s.image}/>{r.title}</li>
                     )}
-                    <div>
-                        <button onClick={pgPrev}>prev</button>
+                    <div className={s.div_navBar}>
+                        <button className={s.nav_button} onClick={pgPrev}>&lt;</button>
                         <span>{count}/{Math.ceil((recipes.results.length / 9)-1)}</span>
-                        <button onClick={pgNext}>next</button>
+                        <button className={s.nav_button} onClick={pgNext}>&gt;</button>
                     </div>
                 </ul>
-
             </div>
         </div>
     )
