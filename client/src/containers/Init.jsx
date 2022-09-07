@@ -7,9 +7,7 @@ import s from './Init.module.css';
 
 function Init() {
   return (
-    <div>
-      {document.body.style = 'background: white;'}
-      {document.body.style = 'color: white;'}
+    <div className={s.body}>
       <div className={s.div}>
         <img src={plate} alt="plate" width="612" height="612" className={s.image} />
         <img src={logo} alt="logo" width="727" height="214" className={s.logo} />

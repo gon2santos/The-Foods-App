@@ -3,11 +3,13 @@ import { Outlet } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import RecipeList from '../components/RecipeList';
 import { getRecipes, getDetail } from '../redux/actions/actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 function Main() {
   const dispatch = useDispatch();
+  const recipes = useSelector((state) => state.recipesLoaded);
+  console.log(recipes.result);
 
   const onSearch = (value) => {
     console.log("Searched for : " + value);
@@ -16,9 +18,8 @@ function Main() {
 
   return (
     <div>
-      {document.body.style = 'background: #d2d3d5;'}
       <SearchBar onSearch={onSearch}/>
-      <RecipeList/>
+      { recipes.results ? <RecipeList/> : null }
       <Outlet />
     </div>
   );
