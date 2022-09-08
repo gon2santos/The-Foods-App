@@ -20,7 +20,7 @@ export default function SearchBar(props) {
     return (
         <div className={s.navbar}>
             
-                <a href="/main" ><img id="logoHenry" src={Logo} width="45" height="40" className="d-inline-block align-top" alt="logoHenry" /></a>
+                <a href="/main" ><img id="logoHenry" src={Logo} width="45" height="40" className={s.HF_logo} alt="logoHenry" /></a>
            
             <form className={s.searchForm} onSubmit={e => { handleSubmit(e) }}>
                 <input type="text" placeholder="I'd like to make..." value={value} onChange={handleChange} className={s.searchInput}/>

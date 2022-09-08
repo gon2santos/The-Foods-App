@@ -1,0 +1,84 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    background-color: #e3e0c4;
+    padding: 30px;
+    width: 300px;
+    border-radius: 10px;
+    font-size: large;
+    font-weight: bold;
+    color: rgb(87, 87, 87);
+}
+
+.body{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 100px; 
+    width: 90%;
+}
+
+.input{
+    background-color: aliceblue;
+    height: 35px;
+    border-radius: 100px;
+    border: none;
+    text-align: center;
+    margin-right: 5px;
+    color: rgb(87, 87, 87);
+    font-weight: bold;
+    font-size: 17px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 90%;
+}
+
+.inputSbs{
+    background-color: aliceblue;
+    border-radius: 20px;
+    border: none;
+    text-align: left;
+    margin-right: 5px;
+    color: rgb(87, 87, 87);
+    font-weight: bold;
+    font-size: 15px;
+    padding: 10px;
+    resize: none;
+    width: 90%;
+}
+
+.listItem {
+    position: relative;
+    display: flex;
+    height: 40px;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: aliceblue;
+    font-size: large;
+    text-decoration: none;
+    background-color: rgb(141, 174, 113);
+    transition: 0.3s;
+    font-weight: bold;
+    border: 2px solid aliceblue;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.listItem:hover {
+    background-color: burlywood;
+}
+
+.div_ops{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.form_items{
+    margin-top: 2px;
+    margin-bottom: 5px;
+}
