@@ -41,6 +41,11 @@
     font-size: 20px;
 }
 
+.link_component{
+    text-decoration: inherit;
+    color: rgb(141, 174, 113);
+}
+
 .nav_button{
     background-color: rgb(141, 174, 113);
     border-radius: 100px;

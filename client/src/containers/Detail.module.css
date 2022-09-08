@@ -1,0 +1,39 @@
+.body{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 70px; 
+    width: 90%;
+    z-index: -1;
+}
+
+.recipe_cont{
+    display: flex;
+    flex-direction: column;
+    background-color: #e3e0c4;
+    padding: 10px;
+    width: 50%;
+    border-radius: 10px;
+    color: rgb(87, 87, 87);    
+}
+
+.image{
+    width: 90%;
+    height: auto;
+}
+
+.recipe_head{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: large;
+    font-weight: bold;
+}
+
+.recipe_title{
+    position: relative;
+    margin-bottom: 5px;
+    text-decoration: underline;
+}
+

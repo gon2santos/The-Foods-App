@@ -1,6 +1,7 @@
 require('dotenv').config();
 export const GET_RECIPES = "GET_RECIPES";
 export const GET_DETAIL = "GET_DETAIL";
+export const TOGGLE_VIEW = "TOGGLE_VIEW";
 
 export function getRecipes(value) {
     return async function(dispatch) {
@@ -19,5 +20,11 @@ export function getDetail(id) {
         .then(response => {
           dispatch({ type: GET_DETAIL, payload: response});
         });
+    };
+  }
+
+  export function toggleView(value) {
+    return function(dispatch) {
+      return dispatch({ type: TOGGLE_VIEW, payload: value});
     };
   }

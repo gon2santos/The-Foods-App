@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import DOMPurify from "dompurify";
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getDetail } from '../redux/actions/actions';
+import s from './Detail.module.css';
 
 function Detail() {
+  const dispatch = useDispatch();
+  let { id } = useParams();
+  useEffect(() => { dispatch(getDetail(id)); }, []);
+  const info = useSelector((state) => state.recipeDetail);
+
   return (
-    <div className="Detail">
-      <h1>Recipe Detail</h1>
+    <div className={s.body}>
+      <div className={s.recipe_cont}>
+        <div className={s.recipe_head}><span className={s.recipe_title}>{info.title}</span><img src={info.image} className={s.image} /></div>
+        {/* the dangerouslySetInnerHTML prop opens app to XSS attacks, so I'm using DOMPurify to only allow safe html tags*/}
+        <div dangerouslySetInnerHTML={{
+          __html: DOMPurify.sanitize(info.summary, {
+            ALLOWED_TAGS: ["p", "span", "b", "a"]
+          })
+        }} />
+      </div>
     </div>
   );
 }
