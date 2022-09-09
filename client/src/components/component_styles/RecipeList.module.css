@@ -80,3 +80,19 @@
     display: flex;
     justify-content: center;
 }
+
+.asc_order_button{
+    border: 1px rgb(141, 174, 113) solid; 
+    border-radius: 100px;
+    width: 50px;
+    height: 50px;
+    transform: rotate(90deg);
+}
+
+.desc_order_button{
+    border: 1px rgb(141, 174, 113) solid; 
+    border-radius: 100px;
+    width: 50px;
+    height: 50px;
+    transform: rotate(270deg);
+}

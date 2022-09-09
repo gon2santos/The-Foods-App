@@ -13,6 +13,7 @@ export default function RecipeList() {
     const [updateList, setUpdateList] = useState(false);
     const [rcpIdx, setRcpIdx] = useState(0);
     const [count, setCount] = useState(0);
+    const [ordStyle, setOrdStyle] = useState(s.desc_order_button);
 
     const pgNext = function () {
         if (count < (recipes.results.length / 9) - 1) {
@@ -28,9 +29,15 @@ export default function RecipeList() {
     }
 
     const sortList = () => recipes.results.sort((a, b) => {
-        // ignore upper and lowercase
-        const titleA = a.title.toUpperCase();
-        const titleB = b.title.toUpperCase();
+
+        let titleB = a.title.toUpperCase();
+        let titleA = b.title.toUpperCase();
+
+        if(ordStyle === s.desc_order_button){
+            titleA = a.title.toUpperCase();
+            titleB = b.title.toUpperCase();
+        }
+        
         if (titleA < titleB) {
             setUpdateList(!updateList);
             return -1;
@@ -42,12 +49,15 @@ export default function RecipeList() {
         return 0;
     })
 
+    const changeStyle = () => { ordStyle === s.asc_order_button ? setOrdStyle(s.desc_order_button) : setOrdStyle(s.asc_order_button); }
+
     return (
         <div className={s.body}>
             <div>
                 <ul className={s.ul}>
                     <div className={s.nav_contain}>
                         <button onClick={sortList}>Sort by name</button>
+                        <button onClick={changeStyle} className={ordStyle}>&gt;</button>
                         <div className={s.div_navBar}>
                             <button className={s.nav_button} onClick={pgPrev}>&lt;</button>
                             <span>{count}/{Math.ceil((recipes.results?.length / 9) - 1)}</span>
