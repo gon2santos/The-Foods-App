@@ -12,7 +12,7 @@ function Init() {
         <img src={plate} alt="plate" width="612" height="612" className={s.image} />
         <img src={logo} alt="logo" width="727" height="214" className={s.logo} />
         <div className={s.divButton}>
-          <NavLink exact to="/main" className={s.linkStyle}>Find Recipe!</NavLink>
+          <NavLink to="/main" className={s.linkStyle}>Find Recipe!</NavLink>
         </div>
       </div>
       <div className={s.div_GH}>

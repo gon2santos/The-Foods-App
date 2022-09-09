@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+//import { useDispatch } from 'react-redux';
 import s from './Create.module.css';
 
 function Create() {
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
 
   const [name, setName] = useState('');
   const [summary, setSummary] = useState('');

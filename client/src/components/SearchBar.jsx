@@ -30,7 +30,7 @@ export default function SearchBar(props) {
                 <input type="image" src={searchButton} className={s.submitIcon} alt="submitIcon" />
             </form>
             
-            <Link to="/main/create" onClick={() => dispatch(toggleView(false))} className={s.listItem}>Create New Recipe</Link>
+            <Link to="/main/create" onClick={() => dispatch(toggleView(false))} className={s.button_create}>Create New Recipe</Link>
 
         </div>
     )

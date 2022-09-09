@@ -8,10 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function Main() {
   const dispatch = useDispatch();
-  const recipes = useSelector((state) => state.recipesLoaded);
   const showRecipes = useSelector((state) => state.showRecipes);
-
-  console.log(recipes.result);
 
   const onSearch = (value) => {
     console.log("Searched for : " + value);
