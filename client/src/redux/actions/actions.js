@@ -5,7 +5,7 @@ export const TOGGLE_VIEW = "TOGGLE_VIEW";
 
 export function getRecipes(value) {
     return async function(dispatch) {
-      return fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${value}&number=100&apiKey=${process.env.REACT_APP_API_KEY}`)//reemplazar por llamado al server, meter esto en la api
+      return fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${value}&number=100&apiKey=${process.env.REACT_APP_API_KEY}&addRecipeInformation=true`)//reemplazar por llamado al server, meter esto en la api
         .then(response => response.json())
         .then(response => {
           dispatch({ type: GET_RECIPES, payload: response});

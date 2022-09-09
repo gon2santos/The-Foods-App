@@ -28,7 +28,7 @@ export default function RecipeList() {
         }
     }
 
-    const sortList = () => recipes.results.sort((a, b) => {
+    const sortListName = () => recipes.results.sort((a, b) => {
 
         let titleB = a.title.toUpperCase();
         let titleA = b.title.toUpperCase();
@@ -49,6 +49,27 @@ export default function RecipeList() {
         return 0;
     })
 
+    const sortListHS = () => recipes.results.sort((a, b) => {
+        //healthScore
+        let hsB = a.healthScore;
+        let hsA = b.healthScore;
+
+        if(ordStyle === s.desc_order_button){
+            hsA = a.healthScore;
+            hsB = b.healthScore;
+        }
+        
+        if (hsA < hsB) {
+            setUpdateList(!updateList);
+            return -1;
+        }
+        if (hsA > hsB) {
+            setUpdateList(!updateList);
+            return 1;
+        }
+        return 0;
+    })
+
     const changeStyle = () => { ordStyle === s.asc_order_button ? setOrdStyle(s.desc_order_button) : setOrdStyle(s.asc_order_button); }
 
     return (
@@ -56,7 +77,8 @@ export default function RecipeList() {
             <div>
                 <ul className={s.ul}>
                     <div className={s.nav_contain}>
-                        <button onClick={sortList}>Sort by name</button>
+                        <button onClick={sortListName}>Sort by name</button>
+                        <button onClick={sortListHS}>Sort by Health Score</button>
                         <button onClick={changeStyle} className={ordStyle}>&gt;</button>
                         <div className={s.div_navBar}>
                             <button className={s.nav_button} onClick={pgPrev}>&lt;</button>
