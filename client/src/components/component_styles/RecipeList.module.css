@@ -1,3 +1,8 @@
+.nav_contain{
+    display: flex;
+    justify-content: center;
+}
+
 .ul{
     position: absolute;
     top: 6%;
@@ -74,11 +79,6 @@
     width: 150px;
     border-radius: 100px;
     margin-bottom: 10px;
-}
-
-.nav_contain{
-    display: flex;
-    justify-content: center;
 }
 
 .asc_order_button{
