@@ -19,9 +19,6 @@ export default function RecipeList() {
     let vegan = false;
     let vegetarian = false;
     let glutenFree = false;
-    /* const [vegan, setVegan] = useState(false);
-    const [vegetarian, setVegetarian] = useState(false);
-    const [glutenFree, setGlutenFree] = useState(false); */
 
     useEffect(() => { setRendered_recipes(store_recipes) }, [store_recipes]);
 
@@ -77,7 +74,7 @@ export default function RecipeList() {
         setUpdateList(!updateList);
     };
 
-    const filterList = (e, diet) => {
+    const filterList = (e, diet) => { //FILTER FUNCTION V1
         if(diet === 'vegetarian') vegetarian = e.target.checked;             
         else if(diet === 'vegan') vegan = e.target.checked;        
         else if(diet === 'glutenFree') glutenFree = e.target.checked;
@@ -88,6 +85,49 @@ export default function RecipeList() {
         if(vegan) setRendered_recipes(rendered_recipes.filter(item => item.vegan === vegan));
         if(glutenFree) setRendered_recipes(rendered_recipes.filter(item => item.glutenFree === glutenFree));
     }
+
+    /*const [sta_vegan, setVegan] = useState(false);
+    const [sta_vegetarian, setVegetarian] = useState(false);
+    const [sta_glutenFree, setGlutenFree] = useState(false);
+
+    const filterList = (e, diet) => { //FILTER FUNCTION V2
+        vegan = sta_vegan;
+        vegetarian = sta_vegetarian;
+        glutenFree = sta_glutenFree;
+
+        if (diet === 'vegetarian') {
+            vegetarian = e.target.checked;
+            setVegetarian(vegetarian);
+        }
+
+        if (diet === 'vegan') {
+            vegan = e.target.checked;
+            setVegan(vegan);
+        }
+
+        if (diet === 'glutenFree') {
+            glutenFree = e.target.checked;
+            setGlutenFree(glutenFree);
+        }
+        
+        let auxRecipes = store_recipes;
+
+        auxRecipes = store_recipes.filter(item => {
+            let ret = false;
+            if(item.vegetarian === vegetarian){
+                if(item.vegan === vegan){
+                    if(item.glutenFree === glutenFree){
+                        ret = true;
+                    }}}
+                    return ret;
+        });
+
+        setRendered_recipes(auxRecipes);
+
+        console.log(`vegan checked: ${vegan}`);
+        console.log(`vegetarian checked: ${vegetarian}`);
+        console.log(`glutenFree checked: ${glutenFree}`);
+    } */
 
     const changeStyle = () => { ordStyle === s.asc_order_button ? setOrdStyle(s.desc_order_button) : setOrdStyle(s.asc_order_button); }
 
