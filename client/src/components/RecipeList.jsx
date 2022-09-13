@@ -145,6 +145,7 @@ export default function RecipeList() {
             <div>
                 <ul className={s.ul}>
                     <div className={s.nav_contain}>
+                        
                         <div className={s.buttonsOrder}>
                             <div><button className={s.headButtons} onClick={handleAccordionButton}>Sort by diet</button>
                                 <div className={accStyle}>
@@ -159,9 +160,9 @@ export default function RecipeList() {
                                     <div><input type="checkbox" id="LowFODMAP" onChange={e => filterList(e, 'LowFODMAP')} /><label for="LowFODMAP">Low FODMAP</label></div>
                                     <div><input type="checkbox" id="Whole30" onChange={e => filterList(e, 'Whole30')} /><label for="Whole30">Whole30</label></div>
                                 </div></div>
-                            <button onClick={sortListName} className={s.headButtons}>Sort by name</button>
-                            <button onClick={sortListHS} className={s.headButtons}>Sort by Health Score</button>
-                            <button onClick={changeOrdStyle} className={ordStyle}>&gt;</button>
+                            <div className={s.row2}><div className={s.column}><button onClick={sortListName} className={s.headButtons}>Sort by name</button>
+                            <button onClick={sortListHS} className={s.headButtons}>Sort by Health Score</button></div>
+                            <button onClick={changeOrdStyle} className={ordStyle}>&gt;</button></div>
                             <div className={s.div_navBar}>
                                 <button className={s.nav_button} onClick={pgPrev}>&lt;</button>
                                 <span>{count}/{Math.ceil((rendered_recipes?.length / 9) - 1)}</span>
@@ -171,7 +172,7 @@ export default function RecipeList() {
 
                     </div>
                     {rendered_recipes?.slice(rcpIdx, (rcpIdx + 9)).map((r) =>
-                        <li key={r.id} className={s.li}><img src={r.image} className={s.image} alt="recipePicture" /><Link to={`recipe/${r.id}/detail`} onClick={() => dispatch(toggleView(false))} className={s.link_component}>{r.title}</Link></li>
+                        <li key={r.id} className={s.li}><img src={r.image} className={s.image} alt="recipePicture" /><div className={s.column}><Link to={`recipe/${r.id}/detail`} onClick={() => dispatch(toggleView(false))} className={s.link_component}>{r.title}</Link><div><ul className={s.dietsList}>{r.diets.map(diet => <li className={s.row}>&#8226;{diet}&#160;&#160;</li>)}</ul></div></div></li>
                     )}
                 </ul>
             </div>
