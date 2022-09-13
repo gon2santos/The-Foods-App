@@ -19,6 +19,7 @@ function Detail() {
         <div className={s.recipe_head}><span className={s.recipe_title}>{info.title}</span><img src={info.image} className={s.image} alt="recipe_img" /></div>
         <div className={s.dishTypes}>Dish types: {info?.dishTypes?.map(d => <span>&#8226;{d}&#160;&#160;</span>)}</div>
         {info?.diets?.length ? <div className={s.dietsTypes}>Diet types: {info?.diets?.map(d => <span>&#8226;{d}&#160;&#160;</span>)}</div> : <div></div>}
+        {<span className={s.dishTypes}>Health Score: {info.healthScore}</span>}
         {/* the dangerouslySetInnerHTML prop opens app to XSS attacks, so I'm using DOMPurify to only allow safe html tags*/}
         <div className={s.recipeSummary} dangerouslySetInnerHTML={{
           __html: DOMPurify.sanitize(info.summary, {
