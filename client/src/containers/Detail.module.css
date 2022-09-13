@@ -14,6 +14,7 @@
     background-color: #e3e0c4;
     padding: 10px;
     width: 50%;
+    min-width: 400px;
     border-radius: 10px;
     color: rgb(87, 87, 87);    
 }
@@ -21,6 +22,7 @@
 .image{
     width: 90%;
     height: auto;
+    border-radius: 10px;
 }
 
 .recipe_head{
@@ -34,6 +36,63 @@
 .recipe_title{
     position: relative;
     margin-bottom: 5px;
-    text-decoration: underline;
+    background-color: aliceblue;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: rgb(136, 160, 95);
+    font-size:larger;
+    padding-bottom: 5px ;
 }
 
+.inl{
+    display: inline;
+}
+
+.dishTypes{
+    background-color: aliceblue;
+    border-radius: 10px;
+    padding-bottom: 3px;
+    font-size: 12px;
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    color: cadetblue;
+    margin-top: 5px;
+}
+
+.dietsTypes{
+    background-color: aliceblue;
+    border-radius: 10px;
+    padding-bottom: 3px;
+    font-size: 12px;
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    color: rgb(136, 160, 95);
+    margin-top: 5px;
+}
+
+.recipeSummary{
+    background-color: aliceblue;
+    border-radius: 10px;
+    padding: 3px;
+    text-align: center;
+    color: cadetblue;
+    margin-top: 5px;
+}
+
+.recipeSteps{
+    background-color: aliceblue;
+    border-radius: 10px;
+    padding-bottom: 3px;
+    color: rgb(136, 160, 95);
+    margin-top: 5px;
+    padding: 3px;
+}
+
+.instr{
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(136, 160, 95);
+}

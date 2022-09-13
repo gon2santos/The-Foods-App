@@ -149,16 +149,16 @@ export default function RecipeList() {
                         <div className={s.buttonsOrder}>
                             <div><button className={s.headButtons} onClick={handleAccordionButton}>Sort by diet</button>
                                 <div className={accStyle}>
-                                    <div><input type="checkbox" id="vegetarian" onChange={e => filterList(e, 'vegetarian')} /><label for="vegetarian">Vegetarian</label></div>
-                                    <div><input type="checkbox" id="vegan" onChange={e => filterList(e, 'vegan')} /><label for="vegan">Vegan</label></div>
-                                    <div><input type="checkbox" id="glutenFree" onChange={e => filterList(e, 'glutenFree')} /><label for="glutenFree">Gluten Flabel</label></div>
-                                    <div><input type="checkbox" id="Ketogenic" onChange={e => filterList(e, 'Ketogenic')} /><label for="Ketogenic">Ketogenic</label></div>
-                                    <div><input type="checkbox" id="LactoVegetarian" onChange={e => filterList(e, 'LactoOvoVegetarian')} /><label for="LactoVegetarian">Lacto-Olabel Veg</label></div>
-                                    <div><input type="checkbox" id="Pescetarian" onChange={e => filterList(e, 'Pescetarian')} /><label for="Pescetarian">Pescetarian</label></div>
-                                    <div><input type="checkbox" id="Paleo" onChange={e => filterList(e, 'Paleo')} /><label for="Paleo">Paleo</label></div>
-                                    <div><input type="checkbox" id="Primal" onChange={e => filterList(e, 'Primal')} /><label for="Primal">Primal</label></div>
-                                    <div><input type="checkbox" id="LowFODMAP" onChange={e => filterList(e, 'LowFODMAP')} /><label for="LowFODMAP">Low FODMAP</label></div>
-                                    <div><input type="checkbox" id="Whole30" onChange={e => filterList(e, 'Whole30')} /><label for="Whole30">Whole30</label></div>
+                                    <div><input type="checkbox" id="vegetarian" onChange={e => filterList(e, 'vegetarian')} /><label htmlFor="vegetarian">Vegetarian</label></div>
+                                    <div><input type="checkbox" id="vegan" onChange={e => filterList(e, 'vegan')} /><label htmlFor="vegan">Vegan</label></div>
+                                    <div><input type="checkbox" id="glutenFree" onChange={e => filterList(e, 'glutenFree')} /><label htmlFor="glutenFree">Gluten Flabel</label></div>
+                                    <div><input type="checkbox" id="Ketogenic" onChange={e => filterList(e, 'Ketogenic')} /><label htmlFor="Ketogenic">Ketogenic</label></div>
+                                    <div><input type="checkbox" id="LactoVegetarian" onChange={e => filterList(e, 'LactoOvoVegetarian')} /><label htmlFor="LactoVegetarian">Lacto-Olabel Veg</label></div>
+                                    <div><input type="checkbox" id="Pescetarian" onChange={e => filterList(e, 'Pescetarian')} /><label htmlFor="Pescetarian">Pescetarian</label></div>
+                                    <div><input type="checkbox" id="Paleo" onChange={e => filterList(e, 'Paleo')} /><label htmlFor="Paleo">Paleo</label></div>
+                                    <div><input type="checkbox" id="Primal" onChange={e => filterList(e, 'Primal')} /><label htmlFor="Primal">Primal</label></div>
+                                    <div><input type="checkbox" id="LowFODMAP" onChange={e => filterList(e, 'LowFODMAP')} /><label htmlFor="LowFODMAP">Low FODMAP</label></div>
+                                    <div><input type="checkbox" id="Whole30" onChange={e => filterList(e, 'Whole30')} /><label htmlFor="Whole30">Whole30</label></div>
                                 </div></div>
                             <div className={s.row2}><div className={s.column}><button onClick={sortListName} className={s.headButtons}>Sort by name</button>
                             <button onClick={sortListHS} className={s.headButtons}>Sort by Health Score</button></div>
@@ -172,7 +172,7 @@ export default function RecipeList() {
 
                     </div>
                     {rendered_recipes?.slice(rcpIdx, (rcpIdx + 9)).map((r) =>
-                        <li key={r.id} className={s.li}><img src={r.image} className={s.image} alt="recipePicture" /><div className={s.column}><Link to={`recipe/${r.id}/detail`} onClick={() => dispatch(toggleView(false))} className={s.link_component}>{r.title}</Link><div><ul className={s.dietsList}>{r.diets.map(diet => <li className={s.row}>&#8226;{diet}&#160;&#160;</li>)}</ul></div></div></li>
+                        <li key={r.id} className={s.li}><img src={r.image} className={s.image} alt="recipePicture" /><div className={s.column}><Link to={`recipe/${r.id}/detail`} onClick={() => dispatch(toggleView(false))} className={s.link_component}>{r.title}</Link><div><ul className={s.dietsList}>{r.diets.map(diet => <li key={diet} className={s.row}>&#8226;{diet}&#160;&#160;</li>)}</ul></div></div></li>
                     )}
                 </ul>
             </div>

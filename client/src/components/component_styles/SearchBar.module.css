@@ -57,7 +57,15 @@
     border-radius: 100px;
     height: 35px;
     width: 35px;
+    transition: 0.3s;
 }
+
+.submitIcon:hover{
+    transform: rotate(360deg);
+    background-color: rgb(46, 149, 172);
+    transition: 0.4s;
+}
+
 
 .searchForm{
     display: flex;
