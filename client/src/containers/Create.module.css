@@ -3,7 +3,7 @@
     flex-direction: column;
     background-color: #e3e0c4;
     padding: 30px;
-    width: 300px;
+    width: 400px;
     border-radius: 10px;
     font-size: large;
     font-weight: bold;
@@ -48,7 +48,7 @@
     width: 90%;
 }
 
-.listItem {
+.button {
     position: relative;
     display: flex;
     height: 40px;
@@ -65,10 +65,19 @@
     border: 2px solid aliceblue;
     margin: auto;
     margin-top: 10px;
+    cursor: pointer;
 }
 
-.listItem:hover {
+.button:hover {
     background-color: burlywood;
+}
+
+.button:disabled{
+  border: 2px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  transition: 0.3s;
+  cursor: default;
 }
 
 .div_ops{
@@ -81,4 +90,11 @@
 .form_items{
     margin-top: 2px;
     margin-bottom: 5px;
+}
+
+.warning{
+    display: block;
+    color: red;
+    font-size: 10px;
+    font-weight:normal;
 }
