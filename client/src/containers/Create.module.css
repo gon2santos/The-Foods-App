@@ -15,7 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 100px; 
+    top: 70px; 
     width: 90%;
 }
 
@@ -82,9 +82,7 @@
 
 .div_ops{
     display: flex;
-    justify-content: space-between;
-    margin-left: 10%;
-    margin-right: 10%;
+    justify-content: space-around;
 }
 
 .form_items{
@@ -97,4 +95,28 @@
     color: red;
     font-size: 10px;
     font-weight:normal;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+}
+
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+.buttonSetDiets{
+    border: none;
+    border-radius: 10px;
+    background-color: #f5f2dadc;
+    font-size: large;
+    font-weight: bold;
+    color: rgb(87, 87, 87);
+    width: 40%;
+    cursor: pointer;
 }
