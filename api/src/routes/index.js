@@ -30,12 +30,10 @@ router.get('/recipes/:idReceta', (req, res) => {
 router.post("/create", function (req, res) {
     try {
         const msg = { name: req.body.name, summary: req.body.summary, hs: req.body.hs, sbs: req.body.sbs, diets: req.body.diets };
-        res.status(201).json({ msg });
+        console.log(`Recived ${msg}`);
+        res.status(201).json({ created: true });
     } catch (e) {
-        if (e.name === "existError")
-            res.status(400).json({ error: e.message });
-        else if (e.name === "categoryError")
-            res.status(400).json({ error: e.message });
+        res.status(400).json({ error: e.message });
     }
 })
 

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-//import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { createRecipes } from '../redux/actions/actions';
 import s from './Create.module.css';
 
 function Create() {
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const createResult = useSelector((state) => state.createRecipe);
 
   const [name, setName] = useState('');
   const [summary, setSummary] = useState('');
@@ -16,7 +19,7 @@ function Create() {
   const [DairyFree, setDairyFree] = useState(false);
   const [Ketogenic, setKetogenic] = useState(false);
   const [LactoOvoVegetarian, setLactoOvoVegetarian] = useState(false);
-  const [Pescetarian, setPescetarian] = useState(false);
+  const [Pescatarian, setPescatarian] = useState(false);
   const [Paleo, setPaleo] = useState(false);
   const [Primal, setPrimal] = useState(false);
   const [LowFODMAP, setLowFODMAP] = useState(false);
@@ -48,7 +51,7 @@ function Create() {
       setWarningSummary('');
     }
     else {
-      setWarningSummary('Name has to be at least 50 characters long and cannot contain special characters except dots and commas.');
+      setWarningSummary('Summary has to be at least 50 characters long and cannot contain special characters except dots and commas.');
     }
   }
   function handleHsChange(e) {
@@ -79,9 +82,39 @@ function Create() {
         setEnableBtn(false);
     }
   }
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('cambiar esto por el POST');
+    let body = {
+      name: name,
+      summary: summary,
+      hs: hs,
+      sbs: sbs,
+      vegetarian: Vegetarian,
+      vegan: Vegan,
+      glutenFree: GlutenFree,
+      dairyFree: DairyFree,
+      diets: ['keto']
+    };
+
+    let diets = [];
+
+    diets.push(
+      Vegan ? "vegan" : null,
+      GlutenFree ? "gluten Free" : null,
+      DairyFree ? "dairy Free" : null,
+      Ketogenic ? "ketogenic" : null,
+      LactoOvoVegetarian ? "lacto ovo vegetarian" : null,
+      Pescatarian ? "pescatarian" : null,
+      Paleo ? "paleolithic" : null,
+      Primal ? "primal" : null,
+      LowFODMAP ? "low FODMAP" : null,
+      Whole30 ? "whole 30" : null
+    );
+
+    body.diets = diets.filter(n => n); //remove null values from diets array
+
+    dispatch(createRecipes(body));
   };
 
 
@@ -93,14 +126,14 @@ function Create() {
         <div className={s.form_items}><span>Health Score: </span><span className={s.warning}>{warningHS}</span><input type="number" name="hs" onChange={handleHsChange} className={s.input} /></div>
         <div className={s.form_items}><span>Step by Step: </span><span className={s.warning}>{warningSbs}</span><span className={s.warning}>{warningForbiddenWords}</span><textarea name="sbs" cols="40" rows="5" onChange={handleSbsChange} className={s.inputSbs}></textarea></div>
 
-        <button className={s.buttonSetDiets} onClick={() => {hidden === s.hide ? setHidden(s.show) : setHidden(s.hide)}}>Set Diets</button>
+        <button type="button" className={s.buttonSetDiets} onClick={() => { hidden === s.hide ? setHidden(s.show) : setHidden(s.hide) }}>Set Diets</button>
         <div className={hidden}>
           <div className={s.div_ops}>
             <div className={s.column}>
               <div><input type="checkbox" name="vegetarian" value={Vegetarian} onChange={() => setVegetarian(!Vegetarian)} /><label htmlFor='vegetarian'>Vegetarian</label></div>
               <div><input type="checkbox" name="glutenFree" value={GlutenFree} onChange={() => setGlutenFree(!GlutenFree)} /><label htmlFor='glutenFree'>Gluten Free</label></div>
               <div><input type="checkbox" name="Ketogenic" value={Ketogenic} onChange={() => setKetogenic(!Ketogenic)} /><label htmlFor='Ketogenic'>Ketogenic</label></div>
-              <div><input type="checkbox" name="Pescetarian" value={Pescetarian} onChange={() => setPescetarian(!Pescetarian)} /><label htmlFor='Pescetarian'>Pescetarian</label></div>
+              <div><input type="checkbox" name="Pescetarian" value={Pescatarian} onChange={() => setPescatarian(!Pescatarian)} /><label htmlFor='Pescetarian'>Pescetarian</label></div>
               <div><input type="checkbox" name="Primal" value={Primal} onChange={() => setPrimal(!Primal)} /><label htmlFor='Primal'>Primal</label></div>
               <div><input type="checkbox" name="Whole30" value={Whole30} onChange={() => setWhole30(!Whole30)} /><label htmlFor='Whole30'>Whole 30</label></div>
             </div>
@@ -116,6 +149,7 @@ function Create() {
         </div>
 
         <input disabled={enableBtn} type="submit" value="Submit" className={s.button} />
+        <span>{createResult?.created ? 'SUCCESS!' : "FAILED!"}</span>
       </form>
     </div>
   )
