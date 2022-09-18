@@ -1,7 +1,9 @@
 const { Router } = require('express');
 require('dotenv').config();
 const fetch = (...args) =>
-	import('node-fetch').then(({default: fetch}) => fetch(...args));
+    import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const { Recipe, Diet } = require('../db.js');
+
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -27,11 +29,20 @@ router.get('/recipes/:idReceta', (req, res) => {//preguntar si tiene la propieda
         });
 })
 
-router.post("/create", function (req, res) {
+router.post("/create", async function (req, res) {
     try {
         const msg = { name: req.body.name, summary: req.body.summary, hs: req.body.hs, sbs: req.body.sbs, diets: req.body.diets };
         console.log(`Recived ${msg}`);
-        res.status(201).json({ created: true });
+        const [instance, created] = await Recipe.findOrCreate({
+            where: {name: req.body.name},
+            defaults: {
+                name: req.body.name,
+                summary: req.body.summary,
+                hs: req.body.hs,
+                sbs: req.body.sbs
+            }
+        });
+        res.status(201).json({ created: created });
     } catch (e) {
         res.status(400).json({ error: e.message });
     }

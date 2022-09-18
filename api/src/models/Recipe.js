@@ -25,5 +25,7 @@ module.exports = (sequelize) => {
     sbs: {
       type: DataTypes.TEXT,
     }
+  }, {
+    timestamps: false
   });
 };
