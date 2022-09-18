@@ -19,7 +19,7 @@ router.get('/recipes', (req, res) => {
         });
 })
 
-router.get('/recipes/:idReceta', (req, res) => {
+router.get('/recipes/:idReceta', (req, res) => {//preguntar si tiene la propiedad spoonacularSourceUrl, si no la tiene la receta esta en mi db, si la tiene esta en spoonacular
     fetch(`https://api.spoonacular.com/recipes/${req.params.idReceta}/information?apiKey=${process.env.REACT_APP_API_KEY}`)//reemplazar por llamado al server, meter esto en la api
         .then(response => response.json())
         .then(response => {
