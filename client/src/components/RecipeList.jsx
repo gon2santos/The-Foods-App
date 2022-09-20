@@ -172,7 +172,7 @@ export default function RecipeList() {
 
                     </div>
                     {rendered_recipes?.slice(rcpIdx, (rcpIdx + 9)).map((r) =>
-                        <li key={r.id} className={s.li}><img src={r.image} className={s.image} alt="recipePicture" /><div className={s.column}><Link to={`recipe/${r.id}/detail`} onClick={() => dispatch(toggleView(false))} className={s.link_component}>{r.title}</Link><div><ul className={s.dietsList}>{r.diets.map(diet => <li key={diet} className={s.row}>&#8226;{diet}&#160;&#160;</li>)}</ul></div></div></li>
+                        <li key={r.id} className={s.li}><img src={r.image} className={s.image} alt="recipePicture" /><div className={s.column}><Link to={`recipe/${r.id}/detail`} onClick={() => dispatch(toggleView(false))} className={s.link_component}>{r.title}</Link><div><ul className={s.dietsList}>{r.diets?.map(diet => <li key={diet} className={s.row}>&#8226;{diet}&#160;&#160;</li>)}</ul></div></div></li>
                     )}
                 </ul>
             </div>
