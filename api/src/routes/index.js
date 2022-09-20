@@ -53,14 +53,18 @@ router.get('/recipes/:idReceta', async (req, res) => {
     const condition = { where: { id: idReceta } };
     
     regexExp.test(idReceta) ? 
-    Recipe.findOne(condition)
-    .then(response => {res.json(response);}) :
-    fetch(`https://api.spoonacular.com/recipes/${idReceta}/information?apiKey=${process.env.REACT_APP_API_KEY}`)
-        .then(response => response.json())
-        .then(response => {
-            res.json(response);
-        });
+    Recipe.findOne(condition) //database
+    .then(({id, name, summary, hs, sbs}) => {
+        const recipe = {id: id, title: name, summary: summary, healthScore: hs, instructions: sbs, image: 'https://spoonacular.com/recipeImages/606953-312x231.jpg'};
+        res.json(recipe);
+    }) :
+    fetch(`https://api.spoonacular.com/recipes/${idReceta}/information?apiKey=${process.env.REACT_APP_API_KEY}`) //api
+    .then(response => response.json())
+    .then(response => {
+        res.json(response);
+    });
 })
+
 
 router.post("/create", async function (req, res) {
     try {
