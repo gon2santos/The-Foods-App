@@ -31,7 +31,7 @@ function Create() {
   const [warningSummary, setWarningSummary] = useState('*');
   const [warningHS, setWarningHS] = useState('*');
   const [warningSbs, setWarningSbs] = useState('*');
-  const [warningForbiddenWords, setWarningForbiddenWords] = useState('');
+  //const [warningForbiddenWords, setWarningForbiddenWords] = useState('');
   const [hidden, setHidden] = useState(s.hide);
 
   function handleNameChange(e) {
@@ -64,21 +64,21 @@ function Create() {
     }
   }
   function handleSbsChange(e) {
-    const regexWords = /^((?!script).){100,}$/gm;
+    //const regexWords = /^((?!script).){100,}$/gm;
     const regex = /^[\w\W]{100,}$/gm;
     if (!regex.test(e.target.value)) {
       setWarningSbs('Recipe steps has to be at least 100 characters long');
       setEnableBtn(true);
     }
-    else if (!regexWords.test(e.target.value)) {
+    /* else if (!regexWords.test(e.target.value)) {
       setWarningForbiddenWords('Recipe steps cannot contain this words: "script"');
       setEnableBtn(true);
-    }
+    } */
     else {
       setSbs(e.target.value);
       setWarningSbs('');
-      setWarningForbiddenWords('');
-      if ((warningName + warningSbs + warningSummary + warningForbiddenWords) === '')
+      //setWarningForbiddenWords('');
+      if ((warningName + warningSbs + warningSummary /*+ warningForbiddenWords */) === '')
         setEnableBtn(false);
     }
   }
@@ -124,7 +124,7 @@ function Create() {
         <div className={s.form_items}><span>Name: </span><span className={s.warning}>{warningName}</span><input type="text" name="name" onChange={handleNameChange} className={s.input} /></div>
         <div className={s.form_items}><span>Summary: </span><span className={s.warning}>{warningSummary}</span><input type="text" name="summary" onChange={handleSummaryChange} className={s.input} /></div>
         <div className={s.form_items}><span>Health Score: </span><span className={s.warning}>{warningHS}</span><input type="number" name="hs" onChange={handleHsChange} className={s.input} /></div>
-        <div className={s.form_items}><span>Step by Step: </span><span className={s.warning}>{warningSbs}</span><span className={s.warning}>{warningForbiddenWords}</span><textarea name="sbs" cols="40" rows="5" onChange={handleSbsChange} className={s.inputSbs}></textarea></div>
+        <div className={s.form_items}><span>Step by Step: </span><span className={s.warning}>{warningSbs}</span>{/* <span className={s.warning}>{warningForbiddenWords}</span> */}<textarea name="sbs" cols="40" rows="5" onChange={handleSbsChange} className={s.inputSbs}></textarea></div>
 
         <button type="button" className={s.buttonSetDiets} onClick={() => { hidden === s.hide ? setHidden(s.show) : setHidden(s.hide) }}>Set Diets</button>
         <div className={hidden}>

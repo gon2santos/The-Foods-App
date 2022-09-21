@@ -11,7 +11,7 @@ const { Op } = require("sequelize");
 
 const router = Router();
 
-const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi; //regex for UUID check
+const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/i; //regex for UUID check
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -45,24 +45,59 @@ router.get('/recipes', async function (req, res) {
                         image: 'https://spoonacular.com/recipeImages/606953-312x231.jpg'
                     })));
             !responseAPI.results?.length ? res.status(404).json({ error: 'No recipes found' }) : res.json(responseAPI);
-        });
+        })
+        .catch((e) => {
+            console.error(`Error searching recipe list: ${e.message}`);
+        })
+        .then(res.status(503).json({
+            results: responseDB.map(({ id, name, summary, hs }) => (
+                {
+                    id: id,
+                    healthScore: hs,
+                    title: name,
+                    summary: summary,
+                    image: 'https://spoonacular.com/recipeImages/606953-312x231.jpg'
+                }))
+        }));
 })
 
 router.get('/recipes/:idReceta', async (req, res) => {
     const { idReceta } = req.params;
     const condition = { where: { id: idReceta } };
-    
-    regexExp.test(idReceta) ? 
-    Recipe.findOne(condition) //database
-    .then(({id, name, summary, hs, sbs}) => {
-        const recipe = {id: id, title: name, summary: summary, healthScore: hs, instructions: sbs, image: 'https://spoonacular.com/recipeImages/606953-312x231.jpg'};
-        res.json(recipe);
-    }) :
-    fetch(`https://api.spoonacular.com/recipes/${idReceta}/information?apiKey=${process.env.REACT_APP_API_KEY}`) //api
-    .then(response => response.json())
-    .then(response => {
-        res.json(response);
-    });
+
+    if (regexExp.test(idReceta)) {
+        console.log("Requested recipe from db");
+        Recipe.findOne(condition) //database
+            .then(({ id, name, summary, hs, sbs }) => {
+                const recipe = { id: id, title: name, summary: summary, healthScore: hs, instructions: sbs, image: 'https://spoonacular.com/recipeImages/606953-312x231.jpg' };
+                res.json(recipe);
+            })
+    }
+    else {
+        console.log("Requested recipe from api");
+        fetch(`https://api.spoonacular.com/recipes/${idReceta}/information?apiKey=${process.env.REACT_APP_API_KEY}`) //api
+                .then(response => response.json())
+                .then(response => {
+                    res.json(response);
+                })
+                .catch((e) => {
+                    console.error(`Error bringing specific recipe from api: ${e.message}`);
+                })
+    }
+
+    /* regexExp.test(idReceta) ?
+        Recipe.findOne(condition) //database
+            .then(({ id, name, summary, hs, sbs }) => {
+                const recipe = { id: id, title: name, summary: summary, healthScore: hs, instructions: sbs, image: 'https://spoonacular.com/recipeImages/606953-312x231.jpg' };
+                res.json(recipe);
+            }) : fetch(`https://api.spoonacular.com/recipes/${idReceta}/information?apiKey=${process.env.REACT_APP_API_KEY}`) //api
+                .then(response => response.json())
+                .then(response => {
+                    res.json(response);
+                })
+                .catch((e) => {
+                    console.error(`Quise traerte la receta pedida pero hubo un error: ${e.message}`);
+                }) */
 })
 
 
