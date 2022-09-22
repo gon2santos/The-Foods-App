@@ -19,8 +19,9 @@ const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F
 router.get('/recipes', async function (req, res) {
     const { name } = req.query;
     const condition = name ? { where: { name: { [Op.iLike]: `%${name}%` } } } : {};
-    const responseDB = await Recipe.findAll(condition); //response es un array, mapear responsedb en responseAPI.results
-    fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${name}&number=100&apiKey=${process.env.REACT_APP_API_KEY}&addRecipeInformation=true`)
+    Recipe.findAll(condition) //response es un array, mapear responsedb en responseAPI.results
+    .then(function(responseDB){ 
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${name}&number=100&apiKey=${process.env.REACT_APP_API_KEY}&addRecipeInformation=true`)
         .then(function (responseAPI) {
             return responseAPI.json();
         })
@@ -46,19 +47,20 @@ router.get('/recipes', async function (req, res) {
                     })));
             !responseAPI.results?.length ? res.status(404).json({ error: 'No recipes found' }) : res.json(responseAPI);
         })
-        .catch((e) => {
-            console.error(`Error searching recipe list: ${e.message}`);
-        })
-        .then(res.status(503).json({
-            results: responseDB.map(({ id, name, summary, hs }) => (
-                {
-                    id: id,
-                    healthScore: hs,
-                    title: name,
-                    summary: summary,
-                    image: 'https://spoonacular.com/recipeImages/606953-312x231.jpg'
-                }))
-        }));
+    })
+    .catch((e) => {
+        console.error(`Error searching recipe list: ${e.message}`);
+    })
+    /* .then(res.status(503).json({
+        results: responseDB.map(({ id, name, summary, hs }) => (
+            {
+                id: id,
+                healthScore: hs,
+                title: name,
+                summary: summary,
+                image: 'https://spoonacular.com/recipeImages/606953-312x231.jpg'
+            }))
+    })); */
 })
 
 router.get('/recipes/:idReceta', async (req, res) => {
@@ -84,20 +86,6 @@ router.get('/recipes/:idReceta', async (req, res) => {
                     console.error(`Error bringing specific recipe from api: ${e.message}`);
                 })
     }
-
-    /* regexExp.test(idReceta) ?
-        Recipe.findOne(condition) //database
-            .then(({ id, name, summary, hs, sbs }) => {
-                const recipe = { id: id, title: name, summary: summary, healthScore: hs, instructions: sbs, image: 'https://spoonacular.com/recipeImages/606953-312x231.jpg' };
-                res.json(recipe);
-            }) : fetch(`https://api.spoonacular.com/recipes/${idReceta}/information?apiKey=${process.env.REACT_APP_API_KEY}`) //api
-                .then(response => response.json())
-                .then(response => {
-                    res.json(response);
-                })
-                .catch((e) => {
-                    console.error(`Quise traerte la receta pedida pero hubo un error: ${e.message}`);
-                }) */
 })
 
 
