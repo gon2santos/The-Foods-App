@@ -80,6 +80,19 @@ router.get('/recipes/:idReceta', async (req, res) => {
 })
 
 
+router.get('/diets', async function (req, res) {
+    Diet.findAll()
+        .then(responseDB =>{
+            const dietList = responseDB.map(i => i.name)
+            return res.json(dietList);}
+        )
+        .catch((e) => {
+            console.error(`Error retrieving diets list: ${e.message}`);
+            res.status(503);
+        })
+})
+
+
 router.post("/create", async function (req, res) {
     const msg = {
         name: req.body.name,
