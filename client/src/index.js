@@ -5,6 +5,7 @@ import Init from './containers/Init';
 import Main from './containers/Main';
 import Create from './containers/Create';
 import Detail from './containers/Detail';
+import Empty from './components/Empty.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
@@ -18,6 +19,7 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<Init />} />
           <Route path="main" element={<Main />} >
+            <Route path="" element={<Empty />} />
             <Route path="create" element={<Create />} />
             <Route path="recipe/:id/detail" element={<Detail />} />
           </Route>
