@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createRecipes } from '../redux/actions/actions';
 import s from './Create.module.css';
@@ -31,8 +31,19 @@ function Create() {
   const [warningSummary, setWarningSummary] = useState('*');
   const [warningHS, setWarningHS] = useState('*');
   const [warningSbs, setWarningSbs] = useState('*');
+
+  const [createdMsg, setCreatedMsg] = useState('');
   //const [warningForbiddenWords, setWarningForbiddenWords] = useState('');
   const [hidden, setHidden] = useState(s.hide);
+
+  useEffect(() => {
+    if(createResult?.created === true)
+      setCreatedMsg('Recipe created successfully!');
+    else if(createResult?.created === false)
+      setCreatedMsg(`Failed to create recipe: ${createResult?.error}`);
+    else
+      setCreatedMsg('');
+  }, [createResult]);
 
   function handleNameChange(e) {
     const regex = /^[\w- ]{4,}$/gm;
@@ -149,7 +160,8 @@ function Create() {
         </div>
 
         <input disabled={enableBtn} type="submit" value="Submit" className={s.button} />
-        <span>{createResult?.created ? 'SUCCESS!' : "FAILED!"}</span>
+        {/* <span>{createResult?.created ? 'SUCCESS!' : "FAILED!"}</span> */}
+        <span>{createdMsg}</span>
       </form>
     </div>
   )

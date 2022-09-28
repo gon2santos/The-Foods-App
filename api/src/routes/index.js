@@ -132,7 +132,7 @@ router.post("/create", async function (req, res) {
     })
     .catch(e => {
         console.log(e);
-        res.status(400).json({ error: e.message });
+        res.status(400).json({created : false , error: e.message });
     })
 })
 
