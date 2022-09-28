@@ -61,6 +61,8 @@ export default function RecipeList() {
                 return 1;
             return 0;
         });
+        setRcpIdx(0);
+        setCount(0);
         setUpdateList(!updateList);
     };
 
@@ -80,6 +82,8 @@ export default function RecipeList() {
                 return 1;
             return 0;
         });
+        setRcpIdx(0);
+        setCount(0);
         setUpdateList(!updateList);
     };
 
@@ -129,7 +133,8 @@ export default function RecipeList() {
         if (DairyFree) {
             setRendered_recipes(rendered_recipes.filter(element => element.diets.includes("dairy free", 0)));
         }
-
+        setRcpIdx(0);
+        setCount(0);
         setAccStyle(s.inactive);
     };
 
