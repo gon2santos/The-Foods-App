@@ -156,7 +156,7 @@ export default function RecipeList() {
                                 <div className={accStyle}>
                                     <div><input type="checkbox" id="vegetarian" onChange={e => filterList(e, 'vegetarian')} /><label htmlFor="vegetarian">Vegetarian</label></div>
                                     <div><input type="checkbox" id="vegan" onChange={e => filterList(e, 'vegan')} /><label htmlFor="vegan">Vegan</label></div>
-                                    <div><input type="checkbox" id="glutenFree" onChange={e => filterList(e, 'glutenFree')} /><label htmlFor="glutenFree">Gluten Flabel</label></div>
+                                    <div><input type="checkbox" id="glutenFree" onChange={e => filterList(e, 'glutenFree')} /><label htmlFor="glutenFree">Gluten Free</label></div>
                                     <div><input type="checkbox" id="Ketogenic" onChange={e => filterList(e, 'Ketogenic')} /><label htmlFor="Ketogenic">Ketogenic</label></div>
                                     <div><input type="checkbox" id="LactoVegetarian" onChange={e => filterList(e, 'LactoOvoVegetarian')} /><label htmlFor="LactoVegetarian">Lacto-Olabel Veg</label></div>
                                     <div><input type="checkbox" id="Pescetarian" onChange={e => filterList(e, 'Pescetarian')} /><label htmlFor="Pescetarian">Pescetarian</label></div>
@@ -164,6 +164,7 @@ export default function RecipeList() {
                                     <div><input type="checkbox" id="Primal" onChange={e => filterList(e, 'Primal')} /><label htmlFor="Primal">Primal</label></div>
                                     <div><input type="checkbox" id="LowFODMAP" onChange={e => filterList(e, 'LowFODMAP')} /><label htmlFor="LowFODMAP">Low FODMAP</label></div>
                                     <div><input type="checkbox" id="Whole30" onChange={e => filterList(e, 'Whole30')} /><label htmlFor="Whole30">Whole30</label></div>
+                                    <div><input type="checkbox" id="DairyFree" onChange={e => filterList(e, 'DairyFree')} /><label htmlFor="DairyFree">Dairy Free</label></div>
                                 </div></div>
                             <div className={s.row2}><div className={s.column}><button onClick={sortListName} className={s.headButtons}>Sort by name</button>
                             <button onClick={sortListHS} className={s.headButtons}>Sort by Health Score</button></div>
