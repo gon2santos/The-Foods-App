@@ -84,9 +84,10 @@ router.get('/recipes/:idReceta', async (req, res) => {
 
 router.get('/diets', async function (req, res) {
     Diet.findAll()
-        .then(responseDB =>{
+        .then(responseDB => {
             const dietList = responseDB.map(i => i.name)
-            return res.json(dietList);}
+            return res.json(dietList);
+        }
         )
         .catch((e) => {
             console.error(`Error retrieving diets list: ${e.message}`);
@@ -112,30 +113,35 @@ router.post("/create", async function (req, res) {
 
     var recipe = null;
 
-    Recipe.create({
-        name: req.body.name,
-        summary: req.body.summary,
-        hs: req.body.hs,
-        sbs: req.body.sbs
+    Recipe.findOrCreate({
+        where: {
+            name: req.body.name,
+            summary: req.body.summary,
+            hs: req.body.hs,
+            sbs: req.body.sbs
+        }
     })
-    .then(result => {
-        recipe = result;
-        var search = msg.diets;
-        return Diet.findAll({
-            where: {
-              name: { [Op.in]: search },
-            },
-            attributes: ['id']
+        .then(result => {
+            if (!result[1]) return Promise.reject('Recipe exists');
+            else {
+                recipe = result[0];
+                var search = msg.diets;
+                return Diet.findAll({
+                    where: {
+                        name: { [Op.in]: search },
+                    },
+                    attributes: ['id']
+                })
+            }
         })
-    })
-    .then(dts => {
-        recipe.addDiets(dts.map(i => i.id));
-        return res.status(201).json({created : true});
-    })
-    .catch(e => {
-        console.log(e);
-        res.status(400).json({created : false , error: e.message });
-    })
+        .then(dts => {
+            recipe.addDiets(dts.map(i => i.id));
+            return res.status(201).json({ created: true });
+        })
+        .catch(e => {
+            console.log(e);
+            res.status(400).json({ created: false, error: e });
+        })
 })
 
 
