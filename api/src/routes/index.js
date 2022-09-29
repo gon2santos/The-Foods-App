@@ -18,7 +18,7 @@ const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F
 
 router.get('/recipes', async function (req, res) {
     const { name } = req.query;
-    const condition = name ? { where: { name: { [Op.iLike]: `%${name}%` } } } : {};
+    const condition = name ? { where: { name: { [Op.iLike]: `%${name}%` } }, include: Diet } : {};
     Recipe.findAll(condition) //response es un array, mapear responsedb en responseAPI.results
         .then(function (responseDB) {
             fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${name}&number=100&apiKey=${process.env.REACT_APP_API_KEY}&addRecipeInformation=true`)
@@ -28,21 +28,23 @@ router.get('/recipes', async function (req, res) {
                 .then(responseAPI => {
                     !responseAPI.results ?
                         responseAPI = {
-                            ...responseAPI, results: responseDB.map(({ id, name, summary, hs }) => (
+                            ...responseAPI, results: responseDB.map(({ id, name, summary, hs, diets }) => (
                                 {
                                     id: id,
                                     healthScore: hs,
                                     title: name,
                                     summary: summary,
+                                    diets: diets.map(i => i.name),
                                     image: 'https://spoonacular.com/recipeImages/606953-312x231.jpg'
                                 }))
                         } :
-                        responseAPI.results.push(...responseDB.map(({ id, name, summary, hs }) => (
+                        responseAPI.results.push(...responseDB.map(({ id, name, summary, hs, diets }) => (
                             {
                                 id: id,
                                 healthScore: hs,
                                 title: name,
                                 summary: summary,
+                                diets: diets.map(i => i.name),
                                 image: 'https://spoonacular.com/recipeImages/606953-312x231.jpg'
                             })));
                     !responseAPI.results?.length ? res.status(404).json({ error: 'No recipes found' }) : res.json(responseAPI);
@@ -56,13 +58,13 @@ router.get('/recipes', async function (req, res) {
 
 router.get('/recipes/:idReceta', async (req, res) => {
     const { idReceta } = req.params;
-    const condition = { where: { id: idReceta } };
+    const condition = { where: { id: idReceta }, include: Diet };
 
     if (regexExp.test(idReceta)) {
         console.log("Requested recipe from db");
         Recipe.findOne(condition) //database
-            .then(({ id, name, summary, hs, sbs }) => {
-                const recipe = { id: id, title: name, summary: summary, healthScore: hs, instructions: sbs, image: 'https://spoonacular.com/recipeImages/606953-312x231.jpg' };
+            .then(({ id, name, summary, hs, sbs, diets }) => {
+                const recipe = { id: id, title: name, summary: summary, diets: diets.map(i => i.name), healthScore: hs, instructions: sbs, image: 'https://spoonacular.com/recipeImages/606953-312x231.jpg' };
                 res.json(recipe);
             })
     }
