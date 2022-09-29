@@ -10,6 +10,7 @@ import s from './component_styles/RecipeList.module.css';
 export default function RecipeList() {
     const dispatch = useDispatch();
     const store_recipes = useSelector((state) => state.recipesLoaded.results);
+    const store_err = useSelector((state) => state.recipesLoaded.error);
     const [rendered_recipes, setRendered_recipes] = useState();
     const [updateList, setUpdateList] = useState(false);
     const [rcpIdx, setRcpIdx] = useState(0);
@@ -29,7 +30,10 @@ export default function RecipeList() {
     let Whole30 = false;
     let DairyFree = false;
 
-    useEffect(() => { setRendered_recipes(store_recipes) }, [store_recipes]);
+    useEffect(() => { 
+        setRcpIdx(0);
+        setCount(0);
+        setRendered_recipes(store_recipes); }, [store_recipes]);
 
     const pgNext = function () {
         if (count < (rendered_recipes.length / 9) - 1) {
@@ -180,6 +184,7 @@ export default function RecipeList() {
                     {rendered_recipes?.slice(rcpIdx, (rcpIdx + 9)).map((r) =>
                         <li key={r.id} className={s.li}><img src={r.image} className={s.image} alt="recipePicture" /><div className={s.column}><Link to={`recipe/${r.id}/detail`} onClick={() => dispatch(toggleView(false))} className={s.link_component}>{r.title}</Link><div><ul className={s.dietsList}>{r.diets?.map(diet => <li key={diet} className={s.row}>&#8226;{diet}&#160;&#160;</li>)}</ul></div></div></li>
                     )}
+                    <span className={s.err}>{store_err}</span>
                 </ul>
             </div>
         </div>

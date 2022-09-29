@@ -200,3 +200,10 @@
     flex-direction: row;
     align-items: center;
   }
+
+  .err{
+    margin-left: 35%;
+    color:rgb(203, 64, 64);
+    font-weight: bold;
+    font-size: 20px;
+}
