@@ -6,7 +6,7 @@ export const TOGGLE_VIEW = "TOGGLE_VIEW";
 
 export function getRecipes(value) {
     return async function(dispatch) {
-      return fetch(`http://localhost:3001/recipes?name=${value}`)
+      return fetch(`${process.env.REACT_APP_HOST}/recipes?name=${value}`)
         .then(response => response.json())
         .then(response => {
           dispatch({ type: GET_RECIPES, payload: response});
@@ -16,7 +16,7 @@ export function getRecipes(value) {
 
 export function getDetail(id) {
     return async function(dispatch) {
-      return fetch(`http://localhost:3001/recipes/${id}`)
+      return fetch(`${process.env.REACT_APP_HOST}/recipes/${id}`)
         .then(response => response.json())
         .then(response => {
           dispatch({ type: GET_DETAIL, payload: response});
@@ -26,7 +26,7 @@ export function getDetail(id) {
 
   export function createRecipes(details) {
     return async function(dispatch) {
-      return fetch('http://localhost:3001/create', {
+      return fetch(`${process.env.REACT_APP_HOST}/create`, {
         method: 'post',
         body: JSON.stringify(details),
         headers: {'Content-Type': 'application/json'}
