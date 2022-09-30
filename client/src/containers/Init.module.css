@@ -110,4 +110,7 @@
     margin-top: unset;
     top: 50%
   }
+  .linkStyle{
+    bottom: 27%;
+  }
 }

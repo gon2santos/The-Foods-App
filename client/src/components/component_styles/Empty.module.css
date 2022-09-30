@@ -1,21 +1,23 @@
-.body{
+.body {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     height: 100%;
     width: 100%;
 }
 
-.img_c{
-    height: 70%;
+.img_c {
+    height: 300px;
     z-index: -1;
-    margin-top: 60px;
+    top: 10%;
+    width: 400px;
+    position: fixed;
+    left: 30%;
 }
 
 @media screen and (max-width: 600px) {
-    .img_c{
+    .img_c {
         visibility: hidden;
     }
 }
