@@ -120,3 +120,12 @@
     width: 40%;
     cursor: pointer;
 }
+
+@media screen and (max-width: 600px) {
+    .form{
+        width: 310px;
+    }
+    .body{
+        left: 5%;
+    }
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { toggleView } from '../redux/actions/actions';
 import { Link } from 'react-router-dom';
@@ -10,6 +10,7 @@ import s from './component_styles/SearchBar.module.css';
 export default function SearchBar(props) {
     const dispatch = useDispatch();
     const [value, setValue] = useState('');
+    const [createBtnTxt, setCreateBtnTxt] = useState('Create New Recipe');
 
     const handleChange = (event) => {
         setValue(event.target.value);
@@ -20,6 +21,32 @@ export default function SearchBar(props) {
         props.onSearch(value);
     };
 
+    function getWindowDimensions() {
+        const { innerWidth: width, innerHeight: height } = window;
+        return {
+            width,
+            height
+        };
+    };
+
+    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+    useEffect(() => {
+        function handleResize() {
+            setWindowDimensions(getWindowDimensions());
+        }
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    useEffect(() => {
+        if(window.innerWidth < 600)
+        setCreateBtnTxt('👨‍🍳');
+        else
+        setCreateBtnTxt('Create New Recipe');
+    }, [window.innerWidth]);
+
     return (
         <div className={s.navbar}>
 
@@ -29,8 +56,8 @@ export default function SearchBar(props) {
                 <input type="text" placeholder="I'd like to make..." value={value} onChange={handleChange} className={s.searchInput} />
                 <input type="image" src={searchButton} className={s.submitIcon} alt="submitIcon" />
             </form>
-            
-            <Link to="/main/create" onClick={() => dispatch(toggleView(false))} className={s.button_create}>Create New Recipe</Link>
+
+            <Link to="/main/create" onClick={() => dispatch(toggleView(false))} className={s.button_create}>{createBtnTxt}</Link>
 
         </div>
     )

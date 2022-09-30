@@ -51,7 +51,7 @@
     background-color: burlywood;
 }
 
-.submitIcon{
+.submitIcon {
     background-color: rgb(141, 174, 113);
     padding: 2px;
     border-radius: 100px;
@@ -60,14 +60,14 @@
     transition: 0.3s;
 }
 
-.submitIcon:hover{
+.submitIcon:hover {
     transform: rotate(360deg);
     background-color: rgb(46, 149, 172);
     transition: 0.4s;
 }
 
 
-.searchForm{
+.searchForm {
     display: flex;
     align-items: center;
     padding: 3px;
@@ -76,7 +76,7 @@
     background-color: burlywood;
 }
 
-.searchInput{
+.searchInput {
     background-color: aliceblue;
     height: 35px;
     border-radius: 100px;
@@ -86,4 +86,16 @@
     color: rgb(87, 87, 87);
     font-weight: bold;
     font-size: 17px;
+}
+
+@media screen and (max-width: 600px) {
+    .button_create {
+        height: 40px;
+        width: 40px;
+    }
+
+    .searchInput {
+        margin-right: 3px;
+        font-size: 13px;
+    }
 }
