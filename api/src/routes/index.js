@@ -122,7 +122,7 @@ router.post("/create", async function (req, res) {
         }
     })
         .then(result => {
-            if (!result[1]) return Promise.reject('Recipe exists');
+            if (!result[1]) return Promise.reject('This recipe already exists');
             else {
                 recipe = result[0];
                 var search = msg.diets;

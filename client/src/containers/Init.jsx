@@ -12,7 +12,7 @@ function Init() {
         <img data-testid="bgnImg" src={plate} alt="plate" width="612" height="612" className={s.image} />
         <img src={logo} alt="logo" width="727" height="214" className={s.logo} />
         <div className={s.divButton}>
-          <NavLink data-testid="mainLink" to="/main" className={s.linkStyle}>Find Recipe!</NavLink>
+          <NavLink data-testid="mainLink" to="/main" className={s.linkStyle}>Find Recipes!</NavLink>
         </div>
       </div>
       <div className={s.div_GH}>
