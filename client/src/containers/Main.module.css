@@ -14,7 +14,7 @@
     right: 0px;
     align-self: flex-end;
     z-index: -2;
-    opacity: 60%;
+    opacity: 65%;
 }
 
 .img_l{
@@ -23,5 +23,5 @@
     left: 0px;
     align-self: flex-start;
     z-index: -2;
-    opacity: 60%;
+    opacity: 65%;
 }
