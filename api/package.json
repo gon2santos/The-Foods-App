@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -L",
+    "start": "node index.js",
+    "start:dev": "nodemon -L",
     "test-mocha": "mocha -w ./tests/**/*.spec.js",
     "test": "jest --verbose --detectOpenHandles"
   },
