@@ -13,6 +13,7 @@
     height: 100%;
     right: 0px;
     z-index: -2;
+    opacity: 0.6;
 }
 
 .img_l{
@@ -20,4 +21,5 @@
     height: 100%;
     left: 0px;
     z-index: -2;
+    opacity: 0.6;
 }
