@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import DOMPurify from "dompurify";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getDetail } from '../redux/actions/actions';
@@ -20,17 +19,12 @@ function Detail() {
         <div className={s.dishTypes}>Dish types: {info?.dishTypes?.map(d => <span>&#8226;{d}&#160;&#160;</span>)}</div>
         {info?.diets?.length ? <div className={s.dietsTypes}>Diet types: {info?.diets?.map(d => <span>&#8226;{d}&#160;&#160;</span>)}</div> : <div></div>}
         {<span className={s.dishTypes}>Health Score: {info.healthScore}</span>}
-        {/* the dangerouslySetInnerHTML prop opens app to XSS attacks, so I'm using DOMPurify to only allow safe html tags*/}
         <div className={s.recipeSummary} dangerouslySetInnerHTML={{
-          __html: DOMPurify.sanitize(info.summary, {
-            ALLOWED_TAGS: ["p", "span", "b", "a"]
-          })
+          __html: info.summary
         }} />
         <span className={s.instr}>Instructions: </span>
         <div className={s.recipeSteps} dangerouslySetInnerHTML={{
-          __html: DOMPurify.sanitize(info.instructions, {
-            ALLOWED_TAGS: ["ol","li","p","span","b","a"]
-          })
+          __html: info.instructions
         }}/>
       </div>
     </div>
