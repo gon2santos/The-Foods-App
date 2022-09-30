@@ -12,16 +12,12 @@
     position: absolute;
     height: 100%;
     right: 0px;
-    align-self: flex-end;
     z-index: -2;
-    opacity: 65%;
 }
 
 .img_l{
     position: absolute;
     height: 100%;
     left: 0px;
-    align-self: flex-start;
     z-index: -2;
-    opacity: 65%;
 }
