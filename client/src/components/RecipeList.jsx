@@ -156,7 +156,7 @@ export default function RecipeList() {
                     <div className={s.nav_contain}>
                         
                         <div className={s.buttonsOrder}>
-                            <div><button className={s.headButtons} onClick={handleAccordionButton}>Sort by diet</button>
+                            <div><button className={s.headButtons} onClick={handleAccordionButton}>Filter diet</button>
                                 <div className={accStyle}>
                                     <div><input type="checkbox" id="vegetarian" onChange={e => filterList(e, 'vegetarian')} /><label htmlFor="vegetarian">Vegetarian</label></div>
                                     <div><input type="checkbox" id="vegan" onChange={e => filterList(e, 'vegan')} /><label htmlFor="vegan">Vegan</label></div>

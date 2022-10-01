@@ -1,31 +1,32 @@
-.body{
+.body {
     position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 70px; 
+    top: 70px;
     width: 90%;
     z-index: -1;
 }
 
-.recipe_cont{
+.recipe_cont {
     display: flex;
     flex-direction: column;
     background-color: #e3e0c4;
     padding: 10px;
-    width: 50%;
-    min-width: 400px;
+    max-width: 560px;
+    min-width: 200px;
     border-radius: 10px;
-    color: rgb(87, 87, 87);    
+    color: rgb(87, 87, 87);
+    margin-bottom: 10px;
 }
 
-.image{
+.image {
     width: 90%;
     height: auto;
     border-radius: 10px;
 }
 
-.recipe_head{
+.recipe_head {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,7 +34,7 @@
     font-weight: bold;
 }
 
-.recipe_title{
+.recipe_title {
     position: relative;
     margin-bottom: 5px;
     background-color: aliceblue;
@@ -41,15 +42,15 @@
     padding-left: 10px;
     padding-right: 10px;
     color: rgb(136, 160, 95);
-    font-size:larger;
-    padding-bottom: 5px ;
+    font-size: larger;
+    padding-bottom: 5px;
 }
 
-.inl{
+.inl {
     display: inline;
 }
 
-.dishTypes{
+.dishTypes {
     background-color: aliceblue;
     border-radius: 10px;
     padding-bottom: 3px;
@@ -61,7 +62,7 @@
     margin-top: 5px;
 }
 
-.dietsTypes{
+.dietsTypes {
     background-color: aliceblue;
     border-radius: 10px;
     padding-bottom: 3px;
@@ -73,7 +74,7 @@
     margin-top: 5px;
 }
 
-.recipeSummary{
+.recipeSummary {
     background-color: aliceblue;
     border-radius: 10px;
     padding: 3px;
@@ -82,7 +83,7 @@
     margin-top: 5px;
 }
 
-.recipeSteps{
+.recipeSteps {
     background-color: aliceblue;
     border-radius: 10px;
     padding-bottom: 3px;
@@ -91,7 +92,7 @@
     padding: 3px;
 }
 
-.instr{
+.instr {
     font-size: 18px;
     font-weight: bold;
     color: rgb(136, 160, 95);
