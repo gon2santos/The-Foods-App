@@ -1,28 +1,33 @@
-//                       _oo0oo_
-//                      o8888888o
-//                      88" . "88
-//                      (| -_- |)
-//                      0\  =  /0
-//                    ___/`---'\___
-//                  .' \\|     |// '.
-//                 / \\|||  :  |||// \
-//                / _||||| -:- |||||- \
-//               |   | \\\  -  /// |   |
-//               | \_|  ''\---/''  |_/ |
-//               \  .-\__  '-'  ___/-. /
-//             ___'. .'  /--.--\  `. .'___
-//          ."" '<  `.___\_<|>_/___.' >' "".
-//         | | :  `- \`.;`\ _ /`;.`/ - ` : | |
-//         \  \ `_.   \_ __\ /__ _/   .-` /  /
-//     =====`-.____`.___ \_____/___.-`___.-'=====
-//                       `=---='
-//     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 
-// Syncing all the models at once.
-conn.sync({ alter: true }).then(() => {
-  server.listen(process.env.PORT, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
-  });
+//const express = require('express');
+const app_1 = __importDefault(require("./app"));
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const config = require('./db/db_config');
+
+dotenv.config();
+
+//=======START SERVER=======//
+app_1.default.listen(process.env.PORT, () => {
+  console.log(`Successfully started the server, listening on port: ${process.env.PORT}`);
 });
+
+//=======CONNECT TO DB=======//
+mongoose.set('strictQuery', true);
+
+mongoose
+  .connect(config.dt.mongo.url, {
+    retryWrites: true,
+    w: "majority",
+  })
+  .then(() => {
+    console.log("Started the database");
+  })
+  .catch((err) => {
+    console.log(err);
+  });

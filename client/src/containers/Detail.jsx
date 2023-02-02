@@ -26,6 +26,7 @@ function Detail() {
         <div className={s.recipeSteps} dangerouslySetInnerHTML={{
           __html: info.instructions
         }}/>
+        {/* <div>{<span className={s.dishTypes}>Tiempo de coccion: {info.tdc}</span>}</div> */}
       </div>
     </div>
   );

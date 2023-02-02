@@ -12,6 +12,7 @@ function Create() {
   const [summary, setSummary] = useState('');
   const [hs, setHs] = useState(0);
   const [sbs, setSbs] = useState('');
+ /*  const [tdc, setTdc] = useState(0); */
 
   const [Vegetarian, setVegetarian] = useState(false);
   const [Vegan, setVegan] = useState(false);
@@ -94,6 +95,10 @@ function Create() {
     }
   }
 
+/*   function handleTdcChange(e) {
+    setTdc(e.target.value);
+  } */
+
   const handleSubmit = (event) => {
     event.preventDefault();
     let body = {
@@ -105,6 +110,7 @@ function Create() {
       vegan: Vegan,
       glutenFree: GlutenFree,
       dairyFree: DairyFree,
+      /* tdc: tdc, */
       diets: ['keto']
     };
 
@@ -136,6 +142,7 @@ function Create() {
         <div className={s.form_items}><span>Summary: </span><span className={s.warning}>{warningSummary}</span><input type="text" name="summary" onChange={handleSummaryChange} className={s.input} /></div>
         <div className={s.form_items}><span>Health Score: </span><span className={s.warning}>{warningHS}</span><input type="number" name="hs" onChange={handleHsChange} className={s.input} /></div>
         <div className={s.form_items}><span>Step by Step: </span><span className={s.warning}>{warningSbs}</span>{/* <span className={s.warning}>{warningForbiddenWords}</span> */}<textarea name="sbs" cols="40" rows="5" onChange={handleSbsChange} className={s.inputSbs}></textarea></div>
+        {/* <div className={s.form_items}><span>Tiempo de coccion: </span><input type="number" name="tdc" onChange={handleTdcChange} className={s.input} /></div> */}
 
         <button type="button" className={s.buttonSetDiets} onClick={() => { hidden === s.hide ? setHidden(s.show) : setHidden(s.hide) }}>Set Diets</button>
         <div className={hidden}>
